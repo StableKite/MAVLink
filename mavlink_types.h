@@ -170,14 +170,12 @@ typedef struct __mavlink_message_info {
 #define mavlink_ck_a(msg) *((msg)->len + (uint8_t *)_MAV_PAYLOAD_NON_CONST(msg))
 #define mavlink_ck_b(msg) *(((msg)->len+(uint16_t)1) + (uint8_t *)_MAV_PAYLOAD_NON_CONST(msg))
 
-#ifndef HAVE_MAVLINK_CHANNEL_T
 typedef enum {
     MAVLINK_COMM_0,
     MAVLINK_COMM_1,
     MAVLINK_COMM_2,
     MAVLINK_COMM_3
 } mavlink_channel_t;
-#endif
 
 /*
  * applications can set MAVLINK_COMM_NUM_BUFFERS to the maximum number
@@ -202,15 +200,8 @@ typedef enum {
     MAVLINK_PARSE_STATE_GOT_COMPID,
     MAVLINK_PARSE_STATE_GOT_MSGID,
     MAVLINK_PARSE_STATE_GOT_PAYLOAD,
-    MAVLINK_PARSE_STATE_GOT_CRC1,
-    MAVLINK_PARSE_STATE_GOT_BAD_CRC1
+    MAVLINK_PARSE_STATE_GOT_CRC1
 } mavlink_parse_state_t; ///< The state machine for the comm parser
-
-typedef enum {
-    MAVLINK_FRAMING_INCOMPLETE=0,
-    MAVLINK_FRAMING_OK=1,
-    MAVLINK_FRAMING_BAD_CRC=2
-} mavlink_framing_t;
 
 typedef struct __mavlink_status {
     uint8_t msg_received;               ///< Number of received messages
